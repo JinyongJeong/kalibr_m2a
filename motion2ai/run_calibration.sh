@@ -21,7 +21,14 @@ for targetPath in $inputFolder/* ; do
 		mkdir -p $targetName
 		cd $targetName
 		kalibr_calibrate_cameras --bag $targetPath".bag" --topics /cam0/image_raw --models pinhole-equi --target $currentPath/apriltag.yaml
+		# convert calibration.json
+		for resultFile in $outputFolder/$targetName/camchain* ; do
+			python $currentPath/Conv2Calibration.py $resultFile $outputFolder/$targetName/calibration.json
+		done
+
+
 		cd $currentPath
+
     	fi
 done
 
