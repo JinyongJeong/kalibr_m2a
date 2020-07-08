@@ -14,6 +14,7 @@ for targetPath in $inputFolder/* ; do
 		echo "Target path: " "$targetPath"
 		mkdir -p $targetPath/cam0
 		mv $targetPath/*/*.jpg $targetPath/cam0
+		mv $targetPath/*.jpg $targetPath/cam0
 		kalibr_bagcreater --folder $targetPath --output-bag $targetPath".bag"
 		targetName=$(basename $targetPath)
 		echo "Target name: " $targetName
